@@ -1,9 +1,11 @@
 
 import { useState } from 'react';
 
+const randomNumber = Math.trunc(Math.random() * 20 + 1)
+
 const GameLogic = (props) => {
     const [userNumber, setUserNumber] = useState('');
-    const [hiddenNumber, setHiddenNumber] = useState('')
+    const [hiddenNumber, setHiddenNumber] = useState(randomNumber);
 
     const hiddenNumberGenerator = () => {
         setHiddenNumber(Math.trunc(Math.random() * 20 + 1));
@@ -14,7 +16,10 @@ const GameLogic = (props) => {
     const userNumberHandler = (e) => {
         e.preventDefault();
         setUserNumber(e.target.value)
+    };
 
+    const submitHandler = (e) => {
+        e.preventDefault();
     }
 
     return (
@@ -25,7 +30,7 @@ const GameLogic = (props) => {
                 onChange={userNumberHandler}
                     type='number'
                 />
-                <button>play</button>
+                <button onSubmit={submitHandler}>play</button>
             </form>
         </>
     )
